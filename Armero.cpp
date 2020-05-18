@@ -18,7 +18,6 @@ void Armero::consumir(){
 	if (this->stock->hay(c,this->lista.falta(c)) and this->stock->hay(h,this->lista.falta(h))) {
 		this->consumirNecesario(c);
 		this->consumirNecesario(h);
-		this->sumarPuntos();
 		this->lista.reiniciar();
 	}
 }

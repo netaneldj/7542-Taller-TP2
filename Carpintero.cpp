@@ -18,7 +18,6 @@ void Carpintero::consumir() {
 	if (this->stock->hay(n,this->lista.falta(n)) and this->stock->hay(h,this->lista.falta(h))) {
 		this->consumirNecesario(n);
 		this->consumirNecesario(h);
-		this->sumarPuntos();
 		this->lista.reiniciar();
 	}
 }

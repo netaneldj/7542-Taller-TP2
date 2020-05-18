@@ -18,7 +18,6 @@ void Cocinero::consumir() {
 	if (this->stock->hay(c,this->lista.falta(c)) and this->stock->hay(t,this->lista.falta(t))) {
 		this->consumirNecesario(c);
 		this->consumirNecesario(t);
-		this->sumarPuntos();
 		this->lista.reiniciar();
 	}
 }

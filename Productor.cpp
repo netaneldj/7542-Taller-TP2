@@ -22,8 +22,6 @@ void Productor::run() {
 		consumir();
 		trabajar();
 		sumarPuntos();
-		//stock->imprimir();
-		//puntos->imprimir();
 	}
 }
 
