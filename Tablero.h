@@ -6,15 +6,15 @@
 
 class Tablero {
 public:
-	Tablero();
+	Tablero(std::mutex &m);
 	~Tablero();
-	bool sumar(int puntos);
+	void sumar(int puntos);
 	int consultar();
 	void imprimir();
 
 private:
-	std::mutex m;
 	int puntaje;
+	std::mutex &m;
 	std::condition_variable cv;
 };
 

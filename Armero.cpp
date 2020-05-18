@@ -24,7 +24,7 @@ void Armero::consumir(){
 }
 
 void Armero::sumarPuntos(){
-	this->puntos->sumar(5);
+	this->puntos->sumar(3);
 }
 
 bool Armero::controlarRecursos() {

@@ -17,9 +17,9 @@ int main(int argc, char** argv) {
         printf("Uso: ./tp <trabajadores> <mapa>\n");
         return ERROR;
     }
-	std::mutex m;
+	std::mutex m1,m2;
 
-	Poblado p(m);
+	Poblado p(m1,m2);
 	p.ingresarRecursos(argv[ARGS_MAPA]);
 	p.ingresarTrabajadores(argv[ARGS_TRABAJADORES]);
 	p.iniciarTrabajadores();

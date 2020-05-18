@@ -13,7 +13,7 @@
 #include <iostream>
 #include <fstream>
 
-Poblado::Poblado(std::mutex &m):stock(m),m(m) {
+Poblado::Poblado(std::mutex &ms,std::mutex &mp):puntos(mp),stock(ms) {
 	// nada
 }
 
