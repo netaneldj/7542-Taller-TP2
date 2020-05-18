@@ -10,3 +10,10 @@ Minero::Minero(ColaBloqueante* fuente, Inventario* inventario):Recolector(fuente
 Minero::~Minero(){
 	// TODO Auto-generated destructor stub
 }
+
+void Minero::cerrarInventario() {
+	Carbon c;
+	Hierro h;
+	this->stock->cerrar(c);
+	this->stock->cerrar(h);
+}

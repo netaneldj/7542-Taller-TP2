@@ -1,7 +1,7 @@
 #include "Carbon.h"
 
 Carbon::Carbon():Recurso() {
-	this->id = "C";
+	this->id = 'C';
 
 }
 

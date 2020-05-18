@@ -21,9 +21,7 @@ Recurso ColaBloqueante::desencolar() {
 	item.identificador('\0');
 	std::unique_lock<std::mutex> bloqueo(m);
     while(cola.empty()){
-    	if(estaCerrada){
-    		return item;
-    	}
+    	if(estaCerrada)return item;
     	cv.wait(bloqueo);
     }
     item = cola.front();
@@ -34,6 +32,10 @@ Recurso ColaBloqueante::desencolar() {
 
 bool ColaBloqueante::cerrada() {
 	return this->estaCerrada;
+}
+
+bool ColaBloqueante::vacia() {
+	return cola.empty();
 }
 
 void ColaBloqueante::cerrar() {

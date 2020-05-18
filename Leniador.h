@@ -8,6 +8,7 @@ class Leniador: public Recolector {
 public:
 	Leniador(ColaBloqueante* fuente, Inventario* inventario);
 	~Leniador();
+	virtual void cerrarInventario() override;
 };
 
 #endif /* LENIADOR_H_ */

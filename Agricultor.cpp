@@ -13,3 +13,8 @@ Agricultor::~Agricultor() {
 	// TODO Auto-generated destructor stub
 }
 
+void Agricultor::cerrarInventario(){
+	Trigo t;
+	this->stock->cerrar(t);
+}
+

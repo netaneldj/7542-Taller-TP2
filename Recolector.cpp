@@ -8,9 +8,9 @@
 #include "ColaBloqueante.h"
 #include "Inventario.h"
 
-Recolector::Recolector(ColaBloqueante* fuente, Inventario* inventario) {
+Recolector::Recolector(ColaBloqueante* fuente, Inventario* stock) {
+	this->stock = stock;
 	this->fuente = fuente;
-	this->inventario = inventario;
 }
 
 Recolector::~Recolector() {
@@ -18,23 +18,26 @@ Recolector::~Recolector() {
 }
 
 Recurso Recolector::recibirRecurso() {
-	Recurso item = this->fuente->desencolar();
-	if (item.identificador()=="\0") this->inventario->cerrar(item);
-	return item;
+	return this->fuente->desencolar();
 }
 
 bool Recolector::depositarRecurso(Recurso item) {
-	return this->inventario->agregar(item);
+	return this->stock->agregar(item);
 }
 
 void Recolector::trabajar() {
 	usleep(50000);
 }
 
+void Recolector::cerrarInventario() {
+	//nada
+}
+
 void Recolector::run(){
-	while(not this->fuente->cerrada()){
+	while(not (this->fuente->vacia() and this->fuente->cerrada())){
 		Recurso item = recibirRecurso();
 		trabajar();
 		depositarRecurso(item);
 	}
+	this->cerrarInventario();
 }

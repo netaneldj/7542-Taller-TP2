@@ -8,8 +8,8 @@ public:
 	Recurso();
 	virtual ~Recurso();
 	void identificador(char id);
-	std::string identificador();
-	std::string id;
+	char identificador();
+	char id;
 };
 
 #endif /* RECURSO_H_ */

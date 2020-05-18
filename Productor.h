@@ -13,7 +13,7 @@
 
 class Productor: public Thread {
 public:
-	Productor(Inventario* inventario, Tablero* tablero);
+	Productor(Inventario* stock, Tablero* puntos);
 	virtual ~Productor();
 	void trabajar();
 	virtual void consumir();
@@ -22,11 +22,9 @@ public:
 	void run() override;
 	void consumirNecesario(Recurso item);
 	bool establecerRecursos(int carbon, int hierro, int madera, int trigo);
-	Inventario* inventario;
-	Tablero* tablero;
+	Inventario* stock;
+	Tablero* puntos;
 	ListaRecursos lista;
-	std::mutex m;
-	std::condition_variable cv;
 };
 
 #endif /* PRODUCTOR_H_ */

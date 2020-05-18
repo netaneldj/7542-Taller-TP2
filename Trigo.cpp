@@ -1,7 +1,7 @@
 #include "Trigo.h"
 
 Trigo::Trigo():Recurso() {
-	this->id = "T";
+	this->id = 'T';
 
 }
 

@@ -3,7 +3,7 @@
 #include "Trigo.h"
 #include <iostream>
 
-Cocinero::Cocinero(Inventario* inventario, Tablero* tablero):Productor(inventario,tablero) {
+Cocinero::Cocinero(Inventario* stock, Tablero* puntos):Productor(stock,puntos) {
 	this->establecerRecursos(1,0,0,2);
 }
 
@@ -15,7 +15,7 @@ void Cocinero::consumir() {
 	Carbon c;
 	Trigo t;
 
-	if (this->inventario->hay(c,this->lista.falta(c)) and this->inventario->hay(t,this->lista.falta(t))) {
+	if (this->stock->hay(c,this->lista.falta(c)) and this->stock->hay(t,this->lista.falta(t))) {
 		this->consumirNecesario(c);
 		this->consumirNecesario(t);
 		this->sumarPuntos();
@@ -24,13 +24,13 @@ void Cocinero::consumir() {
 }
 
 void Cocinero::sumarPuntos() {
-	this->tablero->sumar(5);
+	this->puntos->sumar(5);
 }
 
 bool Cocinero::controlarRecursos() {
 	Carbon c;
 	Trigo t;
-	//std::cout << "Cocinero controla recursos\n";
-	return (this->inventario->hay(c,this->lista.falta(c)) or not this->inventario->cerrado(c)) and (this->inventario->hay(t,this->lista.falta(t)) or not this->inventario->cerrado(t));
+
+	return (this->stock->hay(c,this->lista.falta(c)) or not this->stock->cerrado(c)) and (this->stock->hay(t,this->lista.falta(t)) or not this->stock->cerrado(t));
 }
 

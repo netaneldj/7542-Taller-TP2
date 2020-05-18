@@ -17,7 +17,7 @@ public:
 	void consumir(Recurso item);
 
 private:
-	std::map<std::string, int> lista;
+	std::map<char, int> lista;
 	int carbon, hierro, madera, trigo;
 
 };

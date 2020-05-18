@@ -8,3 +8,8 @@ Leniador::Leniador(ColaBloqueante* fuente, Inventario* inventario):Recolector(fu
 Leniador::~Leniador() {
 	// TODO Auto-generated destructor stub
 }
+
+void Leniador::cerrarInventario() {
+	Madera m;
+	this->stock->cerrar(m);
+}

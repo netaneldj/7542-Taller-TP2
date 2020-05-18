@@ -12,7 +12,6 @@ class Inventario {
 public:
 	Inventario(std::mutex &m);
 	~Inventario();
-	bool encuentra(Recurso item);
 	bool cerrado(Recurso item);
 	int cantidad(Recurso item);
 	bool hay(Recurso item, int cantidad);
@@ -22,8 +21,8 @@ public:
 	void imprimir();
 private:
 	std::mutex &m;
-	std::map<std::string, int> inventario;
-	std::map<std::string, bool> estaCerrado;
+	std::map<char, int> inventario;
+	std::map<char, bool> estaCerrado;
     std::condition_variable cv;
 };
 

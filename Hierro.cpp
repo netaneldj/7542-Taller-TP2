@@ -1,7 +1,7 @@
 #include "Hierro.h"
 
 Hierro::Hierro():Recurso() {
-	this->id = "H";
+	this->id = 'H';
 
 }
 

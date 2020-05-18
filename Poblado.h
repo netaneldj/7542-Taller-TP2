@@ -22,6 +22,7 @@ public:
 	void ingresarRecursos(std::string ruta);
 	void ingresarTrabajadores(std::string ruta);
 	void crearTrabajadores(std::string tipo, int cantidad);
+	void iniciarTrabajadores();
 	void detenerTrabajadores();
 	void imprimir();
 

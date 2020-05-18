@@ -15,6 +15,7 @@ public:
     void encolar(Recurso item);
     Recurso desencolar();
     bool cerrada();
+    bool vacia();
     void cerrar();
 
 private:

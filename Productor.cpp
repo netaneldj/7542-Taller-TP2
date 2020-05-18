@@ -9,9 +9,8 @@
 #include "Madera.h"
 #include "Trigo.h"
 
-Productor::Productor(Inventario* Inventario, Tablero* tablero) {
-	this->tablero = tablero;
-	this->inventario = inventario;
+Productor::Productor(Inventario* stock, Tablero* puntos):stock(stock),puntos(puntos) {
+	//nada
 }
 
 Productor::~Productor() {
@@ -23,6 +22,8 @@ void Productor::run() {
 		consumir();
 		trabajar();
 		sumarPuntos();
+		//stock->imprimir();
+		//puntos->imprimir();
 	}
 }
 
@@ -41,7 +42,7 @@ void Productor::consumir() {
 	Madera m;
 	Trigo t;
 
-	if (this->inventario->hay(c,this->lista.falta(c)) && this->inventario->hay(h,this->lista.falta(h)) && this->inventario->hay(m,this->lista.falta(m)) && this->inventario->hay(t,this->lista.falta(t))) {
+	if (this->stock->hay(c,this->lista.falta(c)) && this->stock->hay(h,this->lista.falta(h)) && this->stock->hay(m,this->lista.falta(m)) && this->stock->hay(t,this->lista.falta(t))) {
 		this->consumirNecesario(c);
 		this->consumirNecesario(h);
 		this->consumirNecesario(m);
@@ -56,7 +57,7 @@ void Productor::sumarPuntos() {
 
 void Productor::consumirNecesario(Recurso item) {
 	while(this->lista.falta(item)){
-		if(this->inventario->quitar(item)) this->lista.consumir(item);
+		if(this->stock->quitar(item)) this->lista.consumir(item);
 	}
 }
 

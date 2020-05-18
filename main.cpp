@@ -3,6 +3,8 @@
 #include <string.h>
 
 #include "Poblado.h"
+#include "Inventario.h"
+#include "Tablero.h"
 
 #define ARGS_TRABAJADORES 1
 #define ARGS_MAPA 2
@@ -20,6 +22,7 @@ int main(int argc, char** argv) {
 	Poblado p(m);
 	p.ingresarRecursos(argv[ARGS_MAPA]);
 	p.ingresarTrabajadores(argv[ARGS_TRABAJADORES]);
+	p.iniciarTrabajadores();
 	p.detenerTrabajadores();
 	p.imprimir();
     return 0;

@@ -1,7 +1,7 @@
 #include "Recurso.h"
 
 Recurso::Recurso() {
-	//nada
+	id = '\0';
 }
 
 Recurso::~Recurso() {
@@ -12,6 +12,6 @@ void Recurso::identificador(char id) {
 	this->id = id;
 }
 
-std::string Recurso::identificador() {
+char Recurso::identificador() {
 	return this->id;
 }

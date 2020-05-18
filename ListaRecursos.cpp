@@ -5,10 +5,7 @@ ListaRecursos::ListaRecursos() {
 	this->hierro = 0;
 	this->madera = 0;
 	this->trigo = 0;
-	this->lista["C"] = 0;
-	this->lista["H"] = 0;
-	this->lista["M"] = 0;
-	this->lista["T"] = 0;
+	this->reiniciar();
 }
 
 ListaRecursos::~ListaRecursos() {
@@ -20,21 +17,18 @@ void ListaRecursos::asignarRecursos(int carbon, int hierro, int madera, int trig
 	this->hierro = hierro;
 	this->madera = madera;
 	this->trigo = trigo;
-	this->lista["C"] = carbon;
-	this->lista["H"] = hierro;
-	this->lista["M"] = madera;
-	this->lista["T"] = trigo;
+	this->reiniciar();
 }
 
 void ListaRecursos::reiniciar() {
-	this->lista["C"] = this->carbon;
-	this->lista["H"] = this->hierro;
-	this->lista["M"] = this->madera;
-	this->lista["T"] = this->trigo;
+	this->lista['C'] = this->carbon;
+	this->lista['H'] = this->hierro;
+	this->lista['M'] = this->madera;
+	this->lista['T'] = this->trigo;
 }
 
 bool ListaRecursos::estaVacia() {
-	std::map<std::string, int>::iterator iterador = this->lista.begin();
+	std::map<char, int>::iterator iterador = this->lista.begin();
 	while(iterador!=this->lista.end()){
 		if(iterador->second>0){
 			return false;

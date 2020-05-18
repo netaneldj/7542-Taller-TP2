@@ -14,7 +14,7 @@
 #include <fstream>
 
 Poblado::Poblado(std::mutex &m):stock(m),m(m) {
-	//nada
+	// nada
 }
 
 Poblado::~Poblado() {
@@ -56,17 +56,21 @@ void Poblado::ingresarRecursos(std::string ruta){
 		    }
 		}
 	}
+	colaMinero.cerrar();
+	colaLeniador.cerrar();
+	colaAgricultor.cerrar();
 }
 
 void Poblado::ingresarTrabajadores(std::string ruta){
 	std::ifstream Trabajadores(ruta);
-	std::string line, tipo;
+	std::string linea, tipo;
 	int cantidad;
 
 	while(not Trabajadores.eof()){
-		getline (Trabajadores, line, '\n');
+		getline (Trabajadores, linea, '\n');
+		if (linea.size()==0) break;
 		std::vector<std::string> tupla;
-		split(line,tupla,'=');
+		split(linea,tupla,'=');
 		tipo = tupla.front();
 		cantidad = (int)tupla.back().at(0)-48;
 		crearTrabajadores(tipo,cantidad);
@@ -75,47 +79,52 @@ void Poblado::ingresarTrabajadores(std::string ruta){
 
 void Poblado::crearTrabajadores(std::string tipo, int cantidad){
 	if(tipo.compare("Agricultores")==0) {
-		for(int i=0; i<cantidad; i++){
-			Thread* t = new Agricultor(&colaAgricultor,&stock);
-			//std::cout << "Creo agricultor\n";
-			t->start();
-			this->trabajadores.push_back(t);
+		if (cantidad==0) {
+			Trigo t;
+			this->stock.cerrar(t);
+		} else {
+			for(int i=0; i<cantidad; i++){
+				this->trabajadores.push_back (new Agricultor(&colaAgricultor,&stock));
+			}
 		}
 	} else if(tipo.compare("Leniadores")==0) {
-		for(int i=0; i<cantidad; i++){
-			Thread* t = new Leniador(&colaLeniador,&stock);
-			//std::cout << "Creo leniador\n";
-			t->start();
-			this->trabajadores.push_back(t);
+		if (cantidad==0) {
+			Madera n;
+			this->stock.cerrar(n);
+		} else {
+			for(int i=0; i<cantidad; i++){
+				this->trabajadores.push_back( new Leniador(&colaLeniador,&stock));
+			}
 		}
 	} else if(tipo.compare("Mineros")==0) {
-		for(int i=0; i<cantidad; i++){
-			Thread* t = new Minero(&colaMinero,&stock);
-			//std::cout << "Creo Minero\n";
-			t->start();
-			this->trabajadores.push_back(t);
+		if (cantidad==0) {
+			Carbon c;
+			Hierro h;
+			this->stock.cerrar(c);
+			this->stock.cerrar(h);
+		} else {
+			for(int i=0; i<cantidad; i++){
+				this->trabajadores.push_back(new Minero(&colaMinero,&stock));
+			}
 		}
 	} else if(tipo.compare("Cocineros")==0) {
 		for(int i=0; i<cantidad; i++){
-			Thread* t = new Cocinero(&stock,&puntos);
-			//std::cout << "Creo cocinero\n";
-			t->start();
-			this->trabajadores.push_back(t);
+			this->trabajadores.push_back(new Cocinero(&stock,&puntos));
 		}
 	} else if(tipo.compare("Carpinteros")==0) {
 		for(int i=0; i<cantidad; i++){
-			Thread* t = new Carpintero(&stock,&puntos);
-			//std::cout << "Creo carpintero\n";
-			t->start();
-			trabajadores.push_back(t);
+			trabajadores.push_back(new Carpintero(&stock,&puntos));
 		}
 	} else if(tipo.compare("Armeros")==0) {
 		for(int i=0; i<cantidad; i++){
-			Thread* t = new Armero(&stock,&puntos);
-			//std::cout << "Creo armero\n";
-			t->start();
-			trabajadores.push_back(t);
+			trabajadores.push_back(new Armero(&stock,&puntos));
 		}
+	}
+}
+
+void Poblado::iniciarTrabajadores() {
+	for (int i = 0; i < (int)trabajadores.size(); ++i) {
+		trabajadores[i]->start();
 	}
 }
 

@@ -12,10 +12,11 @@ public:
 	virtual ~Recolector();
 	Recurso recibirRecurso();
 	bool depositarRecurso(Recurso item);
+	virtual void cerrarInventario();
 	void trabajar();
 	virtual void run() override;
 	ColaBloqueante* fuente;
-	Inventario* inventario;
+	Inventario* stock;
 };
 
 #endif /* RECOLECTOR_H_ */

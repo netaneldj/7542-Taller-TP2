@@ -1,7 +1,7 @@
 #include "Madera.h"
 
 Madera::Madera():Recurso() {
-	this->id = "M";
+	this->id = 'M';
 
 }
 
