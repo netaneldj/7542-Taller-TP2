@@ -4,7 +4,7 @@ Recolectores y Productores
 **Alumno**:  Netanel David Jamilis           
 **Número de Padrón**: 99093            
 **Email**: njamilis@fi.uba.ar  
-**Github**: netaneldj/tp1
+**Github**: netaneldj/tp2
 
 
 Introducción
