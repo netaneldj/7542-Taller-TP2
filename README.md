@@ -107,6 +107,7 @@ La cola bloqueante es el objeto donde se depositan los recursos recibidos por pa
 
 El objeto thread representa un hilo del programa. En el fondo cada trabajador es un hilo que trabaja en paralelo a los dems. Por eso en los espacios comunes como el inventario, la cola bloqueante o el tablero hay que tener especial cuidado que no se superpongan los diferentes pedidos de los trabajadores.
 
+
 Diagrama ilustrativo
 ------------------------
 
