@@ -115,7 +115,7 @@ El lock es el objeto a traves del cual se organizan los pedidos de los trabajado
 Diagrama ilustrativo
 ------------------------
 
-
+![\[fig:class01\]Proceso de Envio y Recepción de Mensajes](img/diagrama_secuencia_recolector_productor.png)
 
 Dificultades abordadas
 ------------------------
