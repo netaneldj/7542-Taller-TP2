@@ -68,7 +68,6 @@ La solucón que implemente útiliza los siguientes objetos:
 
 -   Cola Bloqueante
 -   Thread
--   Lock
 
 A continuación explicare como utilice cada uno de ellos.
 
@@ -108,9 +107,6 @@ La cola bloqueante es el objeto donde se depositan los recursos recibidos por pa
 
 El objeto thread representa un hilo del programa. En el fondo cada trabajador es un hilo que trabaja en paralelo a los dems. Por eso en los espacios comunes como el inventario, la cola bloqueante o el tablero hay que tener especial cuidado que no se superpongan los diferentes pedidos de los trabajadores.
 
-### Lock
-
-El lock es el objeto a traves del cual se organizan los pedidos de los trabajadores para que no se superpongan. El mismo lo que hace es bloquear el objeto a utilizar mientras se esta usando y desbloquearlo al concluir su uso.
 
 Diagrama ilustrativo
 ------------------------
