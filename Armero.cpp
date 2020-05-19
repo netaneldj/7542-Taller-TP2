@@ -26,6 +26,6 @@ bool Armero::controlarRecursos() {
 	Carbon c;
 	Hierro h;
 
-	return (this->stock->hay(c,2) or not this->stock->cerrado(c))
-			and (this->stock->hay(h,2) or not this->stock->cerrado(h));
+	return(this->stock->hay(c,2) or not this->stock->cerrado(c))
+			and(this->stock->hay(h,2) or not this->stock->cerrado(h));
 }

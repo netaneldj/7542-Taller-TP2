@@ -6,7 +6,8 @@
 #include <iostream>
 #include <string>
 
-Agricultor::Agricultor(ColaBloqueante* fuente, Inventario* inventario):Recolector(fuente,inventario) {}
+Agricultor::Agricultor(ColaBloqueante* fuente,
+		Inventario* inventario):Recolector(fuente,inventario) {}
 
 Agricultor::~Agricultor() {}
 

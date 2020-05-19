@@ -28,8 +28,8 @@ bool Carpintero::controlarRecursos() {
 	Madera n;
 	Hierro h;
 
-	return (this->stock->hay(n,3) or not this->stock->cerrado(n))
-			and (this->stock->hay(h,1) or not this->stock->cerrado(h));
+	return(this->stock->hay(n,3) or not this->stock->cerrado(n))
+			and(this->stock->hay(h,1) or not this->stock->cerrado(h));
 }
 
 
