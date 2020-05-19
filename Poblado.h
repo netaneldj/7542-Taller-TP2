@@ -14,6 +14,7 @@
 #include <string>
 #include <list>
 #include <mutex>
+#include <vector>
 
 class Poblado {
 public:

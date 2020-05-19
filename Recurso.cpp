@@ -4,9 +4,7 @@ Recurso::Recurso() {
 	id = '\0';
 }
 
-Recurso::~Recurso() {
-	// nada
-}
+Recurso::~Recurso() {}
 
 void Recurso::identificador(char id) {
 	this->id = id;

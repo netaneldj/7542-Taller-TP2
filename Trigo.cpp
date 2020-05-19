@@ -2,10 +2,7 @@
 
 Trigo::Trigo():Recurso() {
 	this->id = 'T';
-
 }
 
-Trigo::~Trigo() {
-	// nada
-}
+Trigo::~Trigo() {}
 

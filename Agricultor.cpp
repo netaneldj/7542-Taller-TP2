@@ -4,14 +4,11 @@
 #include "Inventario.h"
 #include "Trigo.h"
 #include <iostream>
+#include <string>
 
-Agricultor::Agricultor(ColaBloqueante* fuente, Inventario* inventario):Recolector(fuente,inventario) {
-	//nada
-}
+Agricultor::Agricultor(ColaBloqueante* fuente, Inventario* inventario):Recolector(fuente,inventario) {}
 
-Agricultor::~Agricultor() {
-	// TODO Auto-generated destructor stub
-}
+Agricultor::~Agricultor() {}
 
 void Agricultor::cerrarInventario() {
 	Trigo t;

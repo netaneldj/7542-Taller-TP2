@@ -1,7 +1,7 @@
 #include "Inventario.h"
 #include <iostream>
 
-Inventario::Inventario(std::mutex &m):m(m) {
+Inventario::Inventario(std::mutex &m):m(m){
 	this->inventario['C'] = 0;
 	this->inventario['H'] = 0;
 	this->inventario['M'] = 0;
@@ -17,9 +17,7 @@ Inventario::Inventario(std::mutex &m):m(m) {
 	this->trabajadores["Mineros"] = 0;
 }
 
-Inventario::~Inventario() {
-	// TODO Auto-generated destructor stub
-}
+Inventario::~Inventario() {}
 
 bool Inventario::cerrado(Recurso item){
 	return this->estaCerrado[item.identificador()];
@@ -31,6 +29,7 @@ int Inventario::cantidad(Recurso item){
 
 bool Inventario::hay(Recurso item, int cantidad) {
 	return this->cantidad(item)>=cantidad;
+
 }
 
 bool Inventario::agregar(Recurso item){

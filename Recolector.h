@@ -5,6 +5,7 @@
 #include "ColaBloqueante.h"
 #include "Inventario.h"
 #include "Thread.h"
+#include <string>
 
 class Recolector : public Thread {
 public:

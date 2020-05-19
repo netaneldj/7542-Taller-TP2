@@ -3,13 +3,10 @@
 #include "Hierro.h"
 #include <iostream>
 
-Carpintero::Carpintero(Inventario* stock, Tablero* puntos):Productor(stock, puntos) {
-	//nada
-}
+Carpintero::Carpintero(Inventario* stock,
+		Tablero* puntos):Productor(stock, puntos) {}
 
-Carpintero::~Carpintero() {
-	// nada
-}
+Carpintero::~Carpintero() {}
 
 void Carpintero::consumir() {
 	Madera n;
@@ -31,7 +28,8 @@ bool Carpintero::controlarRecursos() {
 	Madera n;
 	Hierro h;
 
-	return (this->stock->hay(n,3) or not this->stock->cerrado(n)) and (this->stock->hay(h,1) or not this->stock->cerrado(h));
+	return (this->stock->hay(n,3) or not this->stock->cerrado(n))
+			and (this->stock->hay(h,1) or not this->stock->cerrado(h));
 }
 
 

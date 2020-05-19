@@ -2,6 +2,7 @@
 #define MINERO_H_
 
 #include "Recolector.h"
+#include <string>
 
 class Minero: public Recolector {
 public:

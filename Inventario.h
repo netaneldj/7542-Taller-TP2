@@ -10,7 +10,7 @@
 
 class Inventario {
 public:
-	Inventario(std::mutex &m);
+	explicit Inventario(std::mutex &m);
 	~Inventario();
 	bool cerrado(Recurso item);
 	int cantidad(Recurso item);

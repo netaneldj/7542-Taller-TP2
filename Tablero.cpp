@@ -5,9 +5,7 @@ Tablero::Tablero(std::mutex &m):m(m) {
 	this->puntaje = 0;
 }
 
-Tablero::~Tablero() {
-
-}
+Tablero::~Tablero() {}
 
 void Tablero::sumar(int puntos) {
 	std::unique_lock<std::mutex> bloqueo(m);

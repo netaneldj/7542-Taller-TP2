@@ -3,13 +3,9 @@
 #include "Trigo.h"
 #include <iostream>
 
-Cocinero::Cocinero(Inventario* stock, Tablero* puntos):Productor(stock,puntos) {
-	//nada
-}
+Cocinero::Cocinero(Inventario* stock, Tablero* puntos):Productor(stock,puntos) {}
 
-Cocinero::~Cocinero() {
-	// nada
-}
+Cocinero::~Cocinero() {}
 
 void Cocinero::consumir() {
 	Carbon c;
@@ -31,6 +27,7 @@ bool Cocinero::controlarRecursos() {
 	Carbon c;
 	Trigo t;
 
-	return (this->stock->hay(c,1) or not this->stock->cerrado(c)) and (this->stock->hay(t,2) or not this->stock->cerrado(t));
+	return (this->stock->hay(c,1) or not this->stock->cerrado(c))
+			and (this->stock->hay(t,2) or not this->stock->cerrado(t));
 }
 

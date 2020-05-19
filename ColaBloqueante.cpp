@@ -6,9 +6,7 @@ ColaBloqueante::ColaBloqueante() {
 	this->estaCerrada = false;
 }
 
-ColaBloqueante::~ColaBloqueante() {
-	// nada
-}
+ColaBloqueante::~ColaBloqueante() {}
 
 void ColaBloqueante::encolar(Recurso item) {
     std::unique_lock<std::mutex> bloqueo(m);
@@ -20,7 +18,7 @@ Recurso ColaBloqueante::desencolar() {
 	Recurso item;
 	item.identificador('\0');
 	std::unique_lock<std::mutex> bloqueo(m);
-    while(cola.empty()){
+    while (cola.empty()){
     	if(estaCerrada)return item;
     	cv.wait(bloqueo);
     }

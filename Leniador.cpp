@@ -1,13 +1,11 @@
 #include "Leniador.h"
 #include <iostream>
+#include <string>
 
-Leniador::Leniador(ColaBloqueante* fuente, Inventario* inventario):Recolector(fuente, inventario) {
-	//nada
-}
+Leniador::Leniador(ColaBloqueante* fuente,
+		Inventario* inventario):Recolector(fuente, inventario) {}
 
-Leniador::~Leniador() {
-	// TODO Auto-generated destructor stub
-}
+Leniador::~Leniador() {}
 
 void Leniador::cerrarInventario() {
 	Madera m;

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <string>
 #include "Recurso.h"
 #include "ColaBloqueante.h"
 #include "Inventario.h"
@@ -13,9 +14,7 @@ Recolector::Recolector(ColaBloqueante* fuente, Inventario* stock) {
 	this->fuente = fuente;
 }
 
-Recolector::~Recolector() {
-	// nada
-}
+Recolector::~Recolector() {}
 
 Recurso Recolector::recibirRecurso() {
 	return this->fuente->desencolar();
@@ -38,11 +37,12 @@ std::string Recolector::trabajador() {
 }
 
 void Recolector::run(){
-	while(not (this->fuente->vacia() and this->fuente->cerrada())){
+	while(not(this->fuente->vacia() and this->fuente->cerrada())){
 		Recurso item = recibirRecurso();
 		trabajar();
 		depositarRecurso(item);
 	}
 	this->stock->suspenderTrabajador(this->trabajador());
-	if (this->stock->cantidadTrabajador(this->trabajador())==0)this->cerrarInventario();
+	if (this->stock->cantidadTrabajador(this->trabajador())==0)
+		this->cerrarInventario();
 }

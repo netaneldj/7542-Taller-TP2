@@ -12,23 +12,20 @@
 #include <bits/stdc++.h>
 #include <iostream>
 #include <fstream>
+#include <vector>
 
-Poblado::Poblado(std::mutex &ms,std::mutex &mp):puntos(mp),stock(ms) {
-	// nada
-}
+Poblado::Poblado(std::mutex &ms,std::mutex &mp):puntos(mp),stock(ms) {}
 
-Poblado::~Poblado() {
-	//nada
-}
+Poblado::~Poblado() {}
 
 void Poblado::ingresarRecursos(std::string ruta){
 	std::ifstream Mapa(ruta);
-	std::string line;
+	std::string linea;
 
-	while(not Mapa.eof()){
-		getline (Mapa, line, '\n');
-		for (char& c : line) {
-		    switch((int)c) {
+	while (not Mapa.eof()){
+		getline(Mapa,linea,'\n');
+		for(char& c : linea) {
+		    switch ((int)c) {
 		      case (int)'C':
 		      {
 		    	  Carbon carbon;
@@ -67,7 +64,7 @@ void Poblado::ingresarTrabajadores(std::string ruta){
 	int cantidad;
 
 	while(not Trabajadores.eof()){
-		getline (Trabajadores, linea, '\n');
+		getline(Trabajadores,linea,'\n');
 		if (linea.size()==0) break;
 		std::vector<std::string> tupla;
 		split(linea,tupla,'=');
@@ -88,7 +85,7 @@ void Poblado::crearTrabajadores(std::string tipo, int cantidad){
 				this->stock.incorporarTrabajador("Agricultor");
 			}
 		}
-	} else if(tipo.compare("Leniadores")==0) {
+	} else if (tipo.compare("Leniadores")==0) {
 		if (cantidad==0) {
 			Madera n;
 			this->stock.cerrar(n);
@@ -98,7 +95,7 @@ void Poblado::crearTrabajadores(std::string tipo, int cantidad){
 				this->stock.incorporarTrabajador("Leniador");
 			}
 		}
-	} else if(tipo.compare("Mineros")==0) {
+	} else if (tipo.compare("Mineros")==0) {
 		if (cantidad==0) {
 			Carbon c;
 			Hierro h;
@@ -110,15 +107,15 @@ void Poblado::crearTrabajadores(std::string tipo, int cantidad){
 				this->stock.incorporarTrabajador("Minero");
 			}
 		}
-	} else if(tipo.compare("Cocineros")==0) {
+	} else if (tipo.compare("Cocineros")==0) {
 		for(int i=0; i<cantidad; i++){
 			this->trabajadores.push_back(new Cocinero(&stock,&puntos));
 		}
-	} else if(tipo.compare("Carpinteros")==0) {
+	} else if (tipo.compare("Carpinteros")==0) {
 		for(int i=0; i<cantidad; i++){
 			trabajadores.push_back(new Carpintero(&stock,&puntos));
 		}
-	} else if(tipo.compare("Armeros")==0) {
+	} else if (tipo.compare("Armeros")==0) {
 		for(int i=0; i<cantidad; i++){
 			trabajadores.push_back(new Armero(&stock,&puntos));
 		}
@@ -143,7 +140,8 @@ void Poblado::imprimir() {
 	this->puntos.imprimir();
 }
 
-void Poblado::split(std::string& str, std::vector<std::string>& tupla, char delim){
+void Poblado::split(std::string& str,
+		std::vector<std::string>& tupla, char delim){
 	std::stringstream ss(str);
 	std::string token;
 	while (std::getline(ss, token, delim)) {

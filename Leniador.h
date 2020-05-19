@@ -3,6 +3,7 @@
 
 #include "Recolector.h"
 #include "Madera.h"
+#include <string>
 
 class Leniador: public Recolector {
 public:

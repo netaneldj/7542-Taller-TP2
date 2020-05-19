@@ -3,6 +3,7 @@
 
 #include "Recolector.h"
 #include "Trigo.h"
+#include <string>
 
 
 class Agricultor: public Recolector {

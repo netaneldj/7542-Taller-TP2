@@ -9,13 +9,10 @@
 #include "Madera.h"
 #include "Trigo.h"
 
-Productor::Productor(Inventario* stock, Tablero* puntos):stock(stock),puntos(puntos) {
-	//nada
-}
+Productor::Productor(Inventario* stock,
+		Tablero* puntos):stock(stock),puntos(puntos) {}
 
-Productor::~Productor() {
-	// nada
-}
+Productor::~Productor() {}
 
 void Productor::run() {
 	while (this->controlarRecursos())consumir();
@@ -35,7 +32,6 @@ void Productor::sumarPuntos() {
 
 void Productor::consumirNecesario(Recurso item, int cantidad) {
 	int i=0;
-
 	while(i<cantidad){
 		if(this->stock->quitar(item))i++;
 	}

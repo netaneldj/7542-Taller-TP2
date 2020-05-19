@@ -6,7 +6,7 @@
 
 class Tablero {
 public:
-	Tablero(std::mutex &m);
+	explicit Tablero(std::mutex &m);
 	~Tablero();
 	void sumar(int puntos);
 	int consultar();

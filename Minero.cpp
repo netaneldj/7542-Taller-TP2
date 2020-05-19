@@ -2,14 +2,12 @@
 #include "Carbon.h"
 #include "Hierro.h"
 #include <iostream>
+#include <string>
 
-Minero::Minero(ColaBloqueante* fuente, Inventario* inventario):Recolector(fuente, inventario) {
-	//nada
-}
+Minero::Minero(ColaBloqueante* fuente,
+		Inventario* inventario):Recolector(fuente, inventario) {}
 
-Minero::~Minero(){
-	// TODO Auto-generated destructor stub
-}
+Minero::~Minero(){}
 
 void Minero::cerrarInventario() {
 	Carbon c;

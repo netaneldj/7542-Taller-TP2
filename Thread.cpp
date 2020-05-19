@@ -1,6 +1,5 @@
 #include "Thread.h"
-
-#include "Thread.h"
+#include <utility>
 
 void Thread::start() {
     this->thread = std::thread(&Thread::run, this);

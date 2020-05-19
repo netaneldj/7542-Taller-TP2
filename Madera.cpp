@@ -2,10 +2,7 @@
 
 Madera::Madera():Recurso() {
 	this->id = 'M';
-
 }
 
-Madera::~Madera() {
-	// nada
-}
+Madera::~Madera() {}
 

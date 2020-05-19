@@ -3,13 +3,9 @@
 #include "Hierro.h"
 #include <iostream>
 
-Armero::Armero(Inventario* stock, Tablero* puntos):Productor(stock, puntos) {
-	//nada
-}
+Armero::Armero(Inventario* stock, Tablero* puntos):Productor(stock, puntos) {}
 
-Armero::~Armero() {
-	// nada
-}
+Armero::~Armero() {}
 
 void Armero::consumir(){
 	Carbon c;
@@ -30,5 +26,6 @@ bool Armero::controlarRecursos() {
 	Carbon c;
 	Hierro h;
 
-	return (this->stock->hay(c,2) or not this->stock->cerrado(c)) and (this->stock->hay(h,2) or not this->stock->cerrado(h));
+	return (this->stock->hay(c,2) or not this->stock->cerrado(c))
+			and (this->stock->hay(h,2) or not this->stock->cerrado(h));
 }
