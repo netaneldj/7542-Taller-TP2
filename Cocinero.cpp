@@ -4,7 +4,7 @@
 #include <iostream>
 
 Cocinero::Cocinero(Inventario* stock, Tablero* puntos):Productor(stock,puntos) {
-	this->establecerRecursos(1,0,0,2);
+	//nada
 }
 
 Cocinero::~Cocinero() {
@@ -15,10 +15,9 @@ void Cocinero::consumir() {
 	Carbon c;
 	Trigo t;
 
-	if (this->stock->hay(c,this->lista.falta(c)) and this->stock->hay(t,this->lista.falta(t))) {
-		this->consumirNecesario(c);
-		this->consumirNecesario(t);
-		this->lista.reiniciar();
+	if (this->stock->hay(c,1) and this->stock->hay(t,2)) {
+		this->consumirNecesario(c,1);
+		this->consumirNecesario(t,2);
 	}
 }
 
@@ -30,6 +29,6 @@ bool Cocinero::controlarRecursos() {
 	Carbon c;
 	Trigo t;
 
-	return (this->stock->hay(c,this->lista.falta(c)) or not this->stock->cerrado(c)) and (this->stock->hay(t,this->lista.falta(t)) or not this->stock->cerrado(t));
+	return (this->stock->hay(c,1) or not this->stock->cerrado(c)) and (this->stock->hay(t,2) or not this->stock->cerrado(t));
 }
 

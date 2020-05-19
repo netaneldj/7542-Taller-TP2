@@ -93,7 +93,7 @@ void Poblado::crearTrabajadores(std::string tipo, int cantidad){
 			this->stock.cerrar(n);
 		} else {
 			for(int i=0; i<cantidad; i++){
-				this->trabajadores.push_back( new Leniador(&colaLeniador,&stock));
+				this->trabajadores.push_back(new Leniador(&colaLeniador,&stock));
 			}
 		}
 	} else if(tipo.compare("Mineros")==0) {

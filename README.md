@@ -63,7 +63,6 @@ La solucón que implemente útiliza los siguientes objetos:
 -   Cocinero
 
 -   Inventario
--   Lista Recursos
 -   Tablero
 
 -   Cola Bloqueante
@@ -90,10 +89,6 @@ El productor es el encargado de buscar los recursos del inventario, trabajarlos 
 ### Inventario
 
 El inventario es el deposito donde los recolectores almacenan sus materias primas y donde los productores las buscan para transformarlas en sus productos. Es el objeto más concurrido del programa ya que allí covergen todos los productores y recolectores. Por eso hay que tener un cuidado especial para que no se descontrole todo. Este orden se logra utilizando bloqueos para que solo pueda acceder u trabajador a la vez.
-
-### Lista Recursos
-
-La lista de recursos es una lista particular que tiene cada productor donde dice cuanto necesita de cada materia prima para su trabajo. Además cada vez que consigue una materia prima la tacha de la lista así sabe que le falta una menos para poder realizar su trabajo. Una vez conseguidos todos los recursos se reinicia la lista para volver a buscarlos y así repetir el trabajo.
 
 ### Tablero
 

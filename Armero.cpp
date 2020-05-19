@@ -4,7 +4,7 @@
 #include <iostream>
 
 Armero::Armero(Inventario* stock, Tablero* puntos):Productor(stock, puntos) {
-	this->establecerRecursos(2,2,0,0);
+	//nada
 }
 
 Armero::~Armero() {
@@ -14,11 +14,9 @@ Armero::~Armero() {
 void Armero::consumir(){
 	Carbon c;
 	Hierro h;
-
-	if (this->stock->hay(c,this->lista.falta(c)) and this->stock->hay(h,this->lista.falta(h))) {
-		this->consumirNecesario(c);
-		this->consumirNecesario(h);
-		this->lista.reiniciar();
+	if (this->stock->hay(c,2) and this->stock->hay(h,2)) {
+		this->consumirNecesario(c,2);
+		this->consumirNecesario(h,2);
 	}
 }
 
@@ -30,5 +28,5 @@ bool Armero::controlarRecursos() {
 	Carbon c;
 	Hierro h;
 
-	return (this->stock->hay(c,this->lista.falta(c)) or not this->stock->cerrado(c)) and (this->stock->hay(h,this->lista.falta(h)) or not this->stock->cerrado(h));
+	return (this->stock->hay(c,2) or not this->stock->cerrado(c)) and (this->stock->hay(h,2) or not this->stock->cerrado(h));
 }

@@ -4,7 +4,6 @@
 #include "Recurso.h"
 #include "Inventario.h"
 #include "Thread.h"
-#include "ListaRecursos.h"
 #include "Tablero.h"
 #include <mutex>
 #include <map>
@@ -20,11 +19,9 @@ public:
 	virtual void sumarPuntos();
 	virtual bool controlarRecursos();
 	void run() override;
-	void consumirNecesario(Recurso item);
-	bool establecerRecursos(int carbon, int hierro, int madera, int trigo);
+	void consumirNecesario(Recurso item, int cantidad);
 	Inventario* stock;
 	Tablero* puntos;
-	ListaRecursos lista;
 };
 
 #endif /* PRODUCTOR_H_ */

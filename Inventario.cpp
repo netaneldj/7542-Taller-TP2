@@ -19,7 +19,9 @@ Inventario::~Inventario() {
 }
 
 bool Inventario::cerrado(Recurso item){
+	std::unique_lock<std::mutex> bloqueo(m);
 	return this->estaCerrado[item.identificador()];
+	cv.notify_all();
 }
 
 int Inventario::cantidad(Recurso item){
@@ -51,12 +53,6 @@ bool Inventario::agregar(Recurso item){
 
 bool Inventario::quitar(Recurso item){
 	std::unique_lock<std::mutex> bloqueo(m);
-	while(this->cantidad(item)==0){
-		if (this->estaCerrado[item.identificador()]) {
-			return false;
-		}
-		cv.wait(bloqueo);
-	}
 	this ->inventario[item.identificador()]--;
 	cv.notify_all();
 	return true;
