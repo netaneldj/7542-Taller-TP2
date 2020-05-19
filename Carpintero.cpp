@@ -18,6 +18,8 @@ void Carpintero::consumir() {
 	if (this->stock->hay(n,3) and this->stock->hay(h,1)) {
 		this->consumirNecesario(n,3);
 		this->consumirNecesario(h,1);
+		trabajar();
+		sumarPuntos();
 	}
 }
 

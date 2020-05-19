@@ -18,11 +18,7 @@ Productor::~Productor() {
 }
 
 void Productor::run() {
-	while (this->controlarRecursos()) {
-		consumir();
-		trabajar();
-		sumarPuntos();
-	}
+	while (this->controlarRecursos())consumir();
 }
 
 void Productor::trabajar() {

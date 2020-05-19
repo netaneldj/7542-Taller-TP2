@@ -18,6 +18,8 @@ void Cocinero::consumir() {
 	if (this->stock->hay(c,1) and this->stock->hay(t,2)) {
 		this->consumirNecesario(c,1);
 		this->consumirNecesario(t,2);
+		trabajar();
+		sumarPuntos();
 	}
 }
 

@@ -17,6 +17,8 @@ void Armero::consumir(){
 	if (this->stock->hay(c,2) and this->stock->hay(h,2)) {
 		this->consumirNecesario(c,2);
 		this->consumirNecesario(h,2);
+		trabajar();
+		sumarPuntos();
 	}
 }
 

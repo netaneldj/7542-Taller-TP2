@@ -16,17 +16,10 @@ void Tablero::sumar(int puntos) {
 }
 
 int Tablero::consultar() {
-	int resultado = 0;
-
-	std::unique_lock<std::mutex> bloqueo(m);
-	resultado = this->puntaje;
-	cv.notify_all();
-	return resultado;
+	return this->puntaje;
 }
 
 void Tablero::imprimir() {
-	std::unique_lock<std::mutex> bloqueo(m);
 	std::cout << "Puntos de Beneficio acumulados: " << this->puntaje << "\n";
-	cv.notify_all();
 }
 
