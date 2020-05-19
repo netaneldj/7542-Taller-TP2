@@ -13,6 +13,7 @@ public:
 	Recurso recibirRecurso();
 	bool depositarRecurso(Recurso item);
 	virtual void cerrarInventario();
+	virtual std::string trabajador();
 	void trabajar();
 	virtual void run() override;
 	ColaBloqueante* fuente;

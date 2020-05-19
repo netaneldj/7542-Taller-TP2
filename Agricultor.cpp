@@ -13,8 +13,12 @@ Agricultor::~Agricultor() {
 	// TODO Auto-generated destructor stub
 }
 
-void Agricultor::cerrarInventario(){
+void Agricultor::cerrarInventario() {
 	Trigo t;
 	this->stock->cerrar(t);
+}
+
+std::string Agricultor::trabajador() {
+	return "Agricultor";
 }
 

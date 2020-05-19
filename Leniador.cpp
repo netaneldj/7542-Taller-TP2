@@ -13,3 +13,7 @@ void Leniador::cerrarInventario() {
 	Madera m;
 	this->stock->cerrar(m);
 }
+
+std::string Leniador::trabajador() {
+	return "Leniador";
+}

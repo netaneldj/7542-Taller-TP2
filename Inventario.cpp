@@ -12,6 +12,9 @@ Inventario::Inventario(std::mutex &m):m(m) {
 	this->estaCerrado['M'] = false;
 	this->estaCerrado['T'] = false;
 
+	this->trabajadores["Agricultores"] = 0;
+	this->trabajadores["Leniadores"] = 0;
+	this->trabajadores["Mineros"] = 0;
 }
 
 Inventario::~Inventario() {
@@ -23,21 +26,11 @@ bool Inventario::cerrado(Recurso item){
 }
 
 int Inventario::cantidad(Recurso item){
-	int resultado = 0;
-
-	if (this->estaCerrado[item.identificador()]) {
-		resultado = -1; //No va a haber más
-	} else {
-	resultado = this->inventario[item.identificador()];
-	}
-	return resultado;
+	return this->inventario[item.identificador()];
 }
 
 bool Inventario::hay(Recurso item, int cantidad) {
-	bool resultado = false;
-
-	resultado = this->cantidad(item)>=cantidad;
-	return resultado;
+	return this->cantidad(item)>=cantidad;
 }
 
 bool Inventario::agregar(Recurso item){
@@ -67,5 +60,21 @@ void Inventario::imprimir() {
 	std::cout << "  - Carbon: " << inventario['C'] << "\n";
 	std::cout << "  - Hierro: " << inventario['H'] << "\n";
 	std::cout << "\n";
+}
+
+void Inventario::incorporarTrabajador(std::string trabajador) {
+	std::unique_lock<std::mutex> bloqueo(m);
+	this->trabajadores[trabajador]++;
+	cv.notify_all();
+}
+
+void Inventario::suspenderTrabajador(std::string trabajador) {
+	std::unique_lock<std::mutex> bloqueo(m);
+	this->trabajadores[trabajador]--;
+	cv.notify_all();
+}
+
+int Inventario::cantidadTrabajador(std::string trabajador) {
+	return this->trabajadores[trabajador];
 }
 

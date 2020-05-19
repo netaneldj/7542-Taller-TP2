@@ -85,6 +85,7 @@ void Poblado::crearTrabajadores(std::string tipo, int cantidad){
 		} else {
 			for(int i=0; i<cantidad; i++){
 				this->trabajadores.push_back (new Agricultor(&colaAgricultor,&stock));
+				this->stock.incorporarTrabajador("Agricultor");
 			}
 		}
 	} else if(tipo.compare("Leniadores")==0) {
@@ -94,6 +95,7 @@ void Poblado::crearTrabajadores(std::string tipo, int cantidad){
 		} else {
 			for(int i=0; i<cantidad; i++){
 				this->trabajadores.push_back(new Leniador(&colaLeniador,&stock));
+				this->stock.incorporarTrabajador("Leniador");
 			}
 		}
 	} else if(tipo.compare("Mineros")==0) {
@@ -105,6 +107,7 @@ void Poblado::crearTrabajadores(std::string tipo, int cantidad){
 		} else {
 			for(int i=0; i<cantidad; i++){
 				this->trabajadores.push_back(new Minero(&colaMinero,&stock));
+				this->stock.incorporarTrabajador("Minero");
 			}
 		}
 	} else if(tipo.compare("Cocineros")==0) {

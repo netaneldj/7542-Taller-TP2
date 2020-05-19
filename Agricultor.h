@@ -10,6 +10,7 @@ public:
 	Agricultor(ColaBloqueante* fuente, Inventario* inventario);
 	~Agricultor();
 	virtual void cerrarInventario() override;
+	virtual std::string trabajador() override;
 };
 
 #endif /* AGRICULTOR_H_ */

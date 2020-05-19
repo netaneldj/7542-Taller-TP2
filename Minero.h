@@ -8,6 +8,7 @@ public:
 	Minero(ColaBloqueante* fuente, Inventario* inventario);
 	~Minero();
 	virtual void cerrarInventario() override;
+	virtual std::string trabajador() override;
 };
 
 #endif /* MINERO_H_ */

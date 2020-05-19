@@ -19,10 +19,14 @@ public:
 	bool quitar(Recurso item);
 	void cerrar(Recurso item);
 	void imprimir();
+	void incorporarTrabajador(std::string trabajador);
+	void suspenderTrabajador(std::string trabajador);
+	int cantidadTrabajador(std::string trabajador);
 private:
 	std::mutex &m;
 	std::map<char, int> inventario;
 	std::map<char, bool> estaCerrado;
+	std::map<std::string, int> trabajadores;
     std::condition_variable cv;
 };
 

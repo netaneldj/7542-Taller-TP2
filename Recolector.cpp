@@ -33,11 +33,16 @@ void Recolector::cerrarInventario() {
 	//nada
 }
 
+std::string Recolector::trabajador() {
+	return "";
+}
+
 void Recolector::run(){
 	while(not (this->fuente->vacia() and this->fuente->cerrada())){
 		Recurso item = recibirRecurso();
 		trabajar();
 		depositarRecurso(item);
 	}
-	this->cerrarInventario();
+	this->stock->suspenderTrabajador(this->trabajador());
+	if (this->stock->cantidadTrabajador(this->trabajador())==0)this->cerrarInventario();
 }

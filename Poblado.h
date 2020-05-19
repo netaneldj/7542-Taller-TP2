@@ -32,8 +32,6 @@ private:
 	ColaBloqueante colaMinero;
 	Tablero puntos;
 	Inventario stock;
-	//std::mutex &ms;
-	//std::mutex &mp;
 	std::vector<Thread*> trabajadores;
 	void split(std::string& str, std::vector<std::string>& tupla, char delim);
 };

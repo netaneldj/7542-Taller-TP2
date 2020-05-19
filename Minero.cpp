@@ -17,3 +17,7 @@ void Minero::cerrarInventario() {
 	this->stock->cerrar(c);
 	this->stock->cerrar(h);
 }
+
+std::string Minero::trabajador() {
+	return "Minero";
+}

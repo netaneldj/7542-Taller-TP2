@@ -9,6 +9,7 @@ public:
 	Leniador(ColaBloqueante* fuente, Inventario* inventario);
 	~Leniador();
 	virtual void cerrarInventario() override;
+	virtual std::string trabajador() override;
 };
 
 #endif /* LENIADOR_H_ */
