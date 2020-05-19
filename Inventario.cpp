@@ -29,7 +29,6 @@ int Inventario::cantidad(Recurso item){
 
 bool Inventario::hay(Recurso item, int cantidad) {
 	return this->cantidad(item)>=cantidad;
-
 }
 
 bool Inventario::agregar(Recurso item){
