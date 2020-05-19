@@ -19,9 +19,7 @@ Inventario::~Inventario() {
 }
 
 bool Inventario::cerrado(Recurso item){
-	std::unique_lock<std::mutex> bloqueo(m);
 	return this->estaCerrado[item.identificador()];
-	cv.notify_all();
 }
 
 int Inventario::cantidad(Recurso item){
@@ -38,9 +36,7 @@ int Inventario::cantidad(Recurso item){
 bool Inventario::hay(Recurso item, int cantidad) {
 	bool resultado = false;
 
-	std::unique_lock<std::mutex> bloqueo(m);
 	resultado = this->cantidad(item)>=cantidad;
-	cv.notify_all();
 	return resultado;
 }
 
@@ -65,13 +61,11 @@ void Inventario::cerrar(Recurso item) {
 }
 
 void Inventario::imprimir() {
-	std::unique_lock<std::mutex> bloqueo(m);
 	std::cout << "Recursos restantes:\n";
 	std::cout << "  - Trigo: " << inventario['T'] << "\n";
 	std::cout << "  - Madera: " << inventario['M'] << "\n";
 	std::cout << "  - Carbon: " << inventario['C'] << "\n";
 	std::cout << "  - Hierro: " << inventario['H'] << "\n";
 	std::cout << "\n";
-	cv.notify_all();
 }
 
