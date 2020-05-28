@@ -2,7 +2,7 @@
 #include <iostream>
 
 Cocinero::Cocinero(Inventario &stock,
-		Tablero &puntos) : Productor(stock,puntos) {}
+		Tablero &puntos):Productor(stock,puntos) {}
 
 Cocinero::~Cocinero() {}
 
