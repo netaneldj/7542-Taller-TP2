@@ -25,6 +25,7 @@ private:
 	std::map<char, int> inventario;
 	std::map<char, bool> estaCerrado;
 	std::map<std::string, int> trabajadores;
+    std::condition_variable cv;
 };
 
 #endif /* INVENTARIO_H_ */

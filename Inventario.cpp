@@ -34,19 +34,25 @@ bool Inventario::hay(char recurso, int cantidad) {
 bool Inventario::agregar(char recurso){
 	std::unique_lock<std::mutex> bloqueo(m);
 	this->inventario[recurso]++;
+	cv.notify_all();
 	return true;
 }
 
 bool Inventario::quitar(char recurso){
 	std::unique_lock<std::mutex> bloqueo(m);
-	if (this->inventario[recurso]==0) return false;
+	while (this->inventario[recurso]==0) {
+		if (this->estaCerrado[recurso]) return false;
+		cv.wait(bloqueo);
+	}
 	this ->inventario[recurso]--;
+	cv.notify_all();
 	return true;
 }
 
 void Inventario::cerrar(char recurso) {
 	std::unique_lock<std::mutex> bloqueo(m);
 	estaCerrado[recurso] = true;
+	cv.notify_all();
 }
 
 void Inventario::imprimir() {
