@@ -8,7 +8,8 @@
 #include "ColaBloqueante.h"
 #include "Inventario.h"
 
-Recolector::Recolector(ColaBloqueante &fuente, Inventario &stock) : fuente(fuente), stock(stock){}
+Recolector::Recolector(ColaBloqueante &fuente,
+		Inventario &stock) : fuente(fuente), stock(stock){}
 
 Recolector::~Recolector() {}
 
