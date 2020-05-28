@@ -5,16 +5,12 @@
 #include "Agricultor.h"
 #include "Leniador.h"
 #include "Minero.h"
-#include "Carbon.h"
-#include "Hierro.h"
-#include "Madera.h"
-#include "Trigo.h"
 #include <bits/stdc++.h>
 #include <iostream>
 #include <fstream>
 #include <vector>
 
-Poblado::Poblado(std::mutex &ms,std::mutex &mp):puntos(mp),stock(ms) {}
+Poblado::Poblado() {}
 
 Poblado::~Poblado() {}
 
@@ -22,35 +18,34 @@ void Poblado::ingresarRecursos(std::string ruta){
 	std::ifstream Mapa(ruta);
 	std::string linea;
 
-	while (not Mapa.eof()){
-		getline(Mapa,linea,'\n');
-		for(char& c : linea) {
-		    switch ((int)c) {
-		      case (int)'C':
-		      {
-		    	  Carbon carbon;
-		    	  colaMinero.encolar(carbon);
-		      }
-		      break;
-		      case (int)'H':
-		      {
-		    	  Hierro hierro;
-		    	  colaMinero.encolar(hierro);
-		      }
-		      break;
-		      case (int)'M':
-		      {
-		    	  Madera madera;
-		    	  colaLeniador.encolar(madera);
-		      }
-		      break;
-		      case (int)'T':
-		      {
-		    	  Trigo trigo;
-		    	  colaAgricultor.encolar(trigo);
-		      }
-		      break;
-		    }
+	while (not Mapa.eof()) {
+		while (getline(Mapa,linea,'\n')) {
+			for(char& c : linea) {
+			    switch ((int)c) {
+			      case (int)'C':
+			      {
+			    	  colaMinero.encolar('C');
+			      }
+			      break;
+			      case (int)'H':
+			      {
+			    	  colaMinero.encolar('H');
+			      }
+			      break;
+			      case (int)'M':
+			      {
+			    	  colaLeniador.encolar('M');
+			      }
+			      break;
+			      case (int)'T':
+			      {
+			    	  colaAgricultor.encolar('T');
+			      }
+			      break;
+			      default:
+			          std::cerr << "Recurso desconocido " << c << "\n";
+			    }
+			}
 		}
 	}
 	colaMinero.cerrar();
@@ -77,47 +72,43 @@ void Poblado::ingresarTrabajadores(std::string ruta){
 void Poblado::crearTrabajadores(std::string tipo, int cantidad){
 	if(tipo.compare("Agricultores")==0) {
 		if (cantidad==0) {
-			Trigo t;
-			this->stock.cerrar(t);
+			this->stock.cerrar('T');
 		} else {
 			for(int i=0; i<cantidad; i++){
-				this->trabajadores.push_back (new Agricultor(&colaAgricultor,&stock));
+				this->trabajadores.push_back (new Agricultor(colaAgricultor,stock));
 				this->stock.incorporarTrabajador("Agricultor");
 			}
 		}
 	} else if (tipo.compare("Leniadores")==0) {
 		if (cantidad==0) {
-			Madera n;
-			this->stock.cerrar(n);
+			this->stock.cerrar('M');
 		} else {
 			for(int i=0; i<cantidad; i++){
-				this->trabajadores.push_back(new Leniador(&colaLeniador,&stock));
+				this->trabajadores.push_back(new Leniador(colaLeniador,stock));
 				this->stock.incorporarTrabajador("Leniador");
 			}
 		}
 	} else if (tipo.compare("Mineros")==0) {
 		if (cantidad==0) {
-			Carbon c;
-			Hierro h;
-			this->stock.cerrar(c);
-			this->stock.cerrar(h);
+			this->stock.cerrar('C');
+			this->stock.cerrar('H');
 		} else {
 			for(int i=0; i<cantidad; i++){
-				this->trabajadores.push_back(new Minero(&colaMinero,&stock));
+				this->trabajadores.push_back(new Minero(colaMinero,stock));
 				this->stock.incorporarTrabajador("Minero");
 			}
 		}
 	} else if (tipo.compare("Cocineros")==0) {
 		for(int i=0; i<cantidad; i++){
-			this->trabajadores.push_back(new Cocinero(&stock,&puntos));
+			this->trabajadores.push_back(new Cocinero(stock,puntos));
 		}
 	} else if (tipo.compare("Carpinteros")==0) {
 		for(int i=0; i<cantidad; i++){
-			trabajadores.push_back(new Carpintero(&stock,&puntos));
+			trabajadores.push_back(new Carpintero(stock,puntos));
 		}
 	} else if (tipo.compare("Armeros")==0) {
 		for(int i=0; i<cantidad; i++){
-			trabajadores.push_back(new Armero(&stock,&puntos));
+			trabajadores.push_back(new Armero(stock,puntos));
 		}
 	}
 }

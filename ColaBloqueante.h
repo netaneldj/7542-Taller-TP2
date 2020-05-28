@@ -1,19 +1,17 @@
 #ifndef COLABLOQUEANTE_H_
 #define COLABLOQUEANTE_H_
 
+#include "ColaBloqueante.h"
 #include <condition_variable>
 #include <mutex>
 #include <queue>
-
-#include "Recurso.h"
-#include "ColaBloqueante.h"
 
 class ColaBloqueante {
 public:
     ColaBloqueante();
     ~ColaBloqueante();
-    void encolar(Recurso item);
-    Recurso desencolar();
+    void encolar(char recurso);
+    char desencolar();
     bool cerrada();
     bool vacia();
     void cerrar();
@@ -21,7 +19,7 @@ public:
 private:
     bool estaCerrada;
     std::mutex m;
-    std::queue<Recurso> cola;
+    std::queue<char> cola;
     std::condition_variable cv;
 };
 

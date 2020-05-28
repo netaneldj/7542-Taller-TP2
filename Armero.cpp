@@ -1,31 +1,24 @@
 #include "Armero.h"
-#include "Carbon.h"
-#include "Hierro.h"
 #include <iostream>
 
-Armero::Armero(Inventario* stock, Tablero* puntos):Productor(stock, puntos) {}
+Armero::Armero(Inventario &stock, Tablero &puntos):Productor(stock, puntos) {}
 
 Armero::~Armero() {}
 
 void Armero::consumir(){
-	Carbon c;
-	Hierro h;
-	if (this->stock->hay(c,2) and this->stock->hay(h,2)) {
-		this->consumirNecesario(c,2);
-		this->consumirNecesario(h,2);
+	if (this->stock.hay('C',2) and this->stock.hay('H',2)) {
+		this->consumirNecesario('C',2);
+		this->consumirNecesario('H',2);
 		trabajar();
 		sumarPuntos();
 	}
 }
 
 void Armero::sumarPuntos(){
-	this->puntos->sumar(3);
+	this->puntos.sumar(3);
 }
 
 bool Armero::controlarRecursos() {
-	Carbon c;
-	Hierro h;
-
-	return(this->stock->hay(c,2) or not this->stock->cerrado(c))
-			and(this->stock->hay(h,2) or not this->stock->cerrado(h));
+	return(this->stock.hay('C',2) or not this->stock.cerrado('C'))
+			and(this->stock.hay('H',2) or not this->stock.cerrado('H'));
 }

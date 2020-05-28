@@ -4,13 +4,9 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "Carbon.h"
-#include "Hierro.h"
-#include "Madera.h"
-#include "Trigo.h"
 
-Productor::Productor(Inventario* stock,
-		Tablero* puntos):stock(stock),puntos(puntos) {}
+Productor::Productor(Inventario &stock,
+		Tablero &puntos):stock(stock),puntos(puntos) {}
 
 Productor::~Productor() {}
 
@@ -30,10 +26,10 @@ void Productor::sumarPuntos() {
 	//nada
 }
 
-void Productor::consumirNecesario(Recurso item, int cantidad) {
+void Productor::consumirNecesario(char recurso, int cantidad) {
 	int i=0;
 	while(i<cantidad){
-		if(this->stock->quitar(item))i++;
+		if(this->stock.quitar(recurso))i++;
 	}
 }
 

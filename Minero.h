@@ -6,7 +6,7 @@
 
 class Minero: public Recolector {
 public:
-	Minero(ColaBloqueante* fuente, Inventario* inventario);
+	Minero(ColaBloqueante &fuente, Inventario &inventario);
 	~Minero();
 	virtual void cerrarInventario() override;
 	virtual std::string trabajador() override;

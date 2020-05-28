@@ -6,7 +6,7 @@
 
 class Tablero {
 public:
-	explicit Tablero(std::mutex &m);
+	Tablero();
 	~Tablero();
 	void sumar(int puntos);
 	int consultar();
@@ -14,8 +14,7 @@ public:
 
 private:
 	int puntaje;
-	std::mutex &m;
-	std::condition_variable cv;
+	std::mutex m;
 };
 
 #endif /* TABLERO_H_ */

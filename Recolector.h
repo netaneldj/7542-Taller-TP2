@@ -1,7 +1,6 @@
 #ifndef RECOLECTOR_H_
 #define RECOLECTOR_H_
 
-#include "Recurso.h"
 #include "ColaBloqueante.h"
 #include "Inventario.h"
 #include "Thread.h"
@@ -9,16 +8,16 @@
 
 class Recolector : public Thread {
 public:
-	Recolector(ColaBloqueante* fuente, Inventario* inventario);
+	Recolector(ColaBloqueante &fuente, Inventario &inventario);
 	virtual ~Recolector();
-	Recurso recibirRecurso();
-	bool depositarRecurso(Recurso item);
+	char recibirRecurso();
+	bool depositarRecurso(char recurso);
 	virtual void cerrarInventario();
 	virtual std::string trabajador();
 	void trabajar();
 	virtual void run() override;
-	ColaBloqueante* fuente;
-	Inventario* stock;
+	ColaBloqueante &fuente;
+	Inventario &stock;
 };
 
 #endif /* RECOLECTOR_H_ */

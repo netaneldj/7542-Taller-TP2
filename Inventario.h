@@ -6,28 +6,25 @@
 #include <mutex>
 #include <map>
 
-#include "Recurso.h"
-
 class Inventario {
 public:
-	explicit Inventario(std::mutex &m);
+	Inventario();
 	~Inventario();
-	bool cerrado(Recurso item);
-	int cantidad(Recurso item);
-	bool hay(Recurso item, int cantidad);
-	bool agregar(Recurso item);
-	bool quitar(Recurso item);
-	void cerrar(Recurso item);
+	bool cerrado(char recurso);
+	int cantidad(char recurso);
+	bool hay(char recurso, int cantidad);
+	bool agregar(char recurso);
+	bool quitar(char recurso);
+	void cerrar(char recurso);
 	void imprimir();
 	void incorporarTrabajador(std::string trabajador);
 	void suspenderTrabajador(std::string trabajador);
 	int cantidadTrabajador(std::string trabajador);
 private:
-	std::mutex &m;
+	std::mutex m;
 	std::map<char, int> inventario;
 	std::map<char, bool> estaCerrado;
 	std::map<std::string, int> trabajadores;
-    std::condition_variable cv;
 };
 
 #endif /* INVENTARIO_H_ */

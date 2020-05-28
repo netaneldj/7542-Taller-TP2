@@ -5,7 +5,7 @@
 
 class Armero: public Productor {
 public:
-	Armero(Inventario* inventario, Tablero* tablero);
+	Armero(Inventario &inventario, Tablero &tablero);
 	~Armero();
 	void consumir() override;
 	void sumarPuntos() override;

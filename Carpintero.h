@@ -5,7 +5,7 @@
 
 class Carpintero: public Productor {
 public:
-	Carpintero(Inventario* inventario, Tablero* tablero);
+	Carpintero(Inventario &inventario, Tablero &tablero);
 	 ~Carpintero();
 	void consumir() override;
 	void sumarPuntos() override;

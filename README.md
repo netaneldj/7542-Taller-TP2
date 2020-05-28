@@ -46,12 +46,6 @@ La solucón que implemente útiliza los siguientes objetos:
 
 -   Poblado
 
--   Recurso
--   Carbon
--   Hierro
--   Madera
--   Trigo
-
 -   Recolector
 -   Agricultor
 -   Leniador
@@ -73,10 +67,6 @@ A continuación explicare como utilice cada uno de ellos.
 ### Poblado
 
 El poblado es el objeto principal del programa. Este se encarga de ingresar los recursos que llegan por parametro a las colas, crear los trabajadores que se especifican en la entrada y mandarlos a trabajar. Tambien una vez finalizado el trabajo se encarga de unir los resultados parciales y mostrar las estadisticas por pantalla.  
-
-### Recurso
-
-El recurso es el elemento base el cual los trabajadores van a recolectar y los productores van a utilizar como materia prima para sus trabajos. Los diferentes tipos de recurso disponibles en este poblado son carbon, hierro, madera y trigo.
 
 ### Recolector
 

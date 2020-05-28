@@ -17,15 +17,18 @@ int main(int argc, char** argv) {
         printf("Uso: ./tp <trabajadores> <mapa>\n");
         return ERROR;
     }
-	std::mutex ms,mp;
 
-	Poblado p(ms,mp);
-	p.ingresarRecursos(argv[ARGS_MAPA]);
-	p.ingresarTrabajadores(argv[ARGS_TRABAJADORES]);
-	p.iniciarTrabajadores();
-	p.detenerTrabajadores();
-	p.imprimir();
-    return 0;
+	Poblado p;
+	try {
+		p.ingresarTrabajadores(argv[ARGS_TRABAJADORES]);
+		p.iniciarTrabajadores();
+		p.ingresarRecursos(argv[ARGS_MAPA]);
+		p.detenerTrabajadores();
+		p.imprimir();
+	    return 0;
+	} catch (...) {
+		return 1;
+	}
 }
 
 

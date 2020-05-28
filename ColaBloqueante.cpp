@@ -1,6 +1,6 @@
-#include "Recurso.h"
 #include "ColaBloqueante.h"
 #include <iostream>
+#define COLA_CERRADA '\0'
 
 ColaBloqueante::ColaBloqueante() {
 	this->estaCerrada = false;
@@ -8,24 +8,23 @@ ColaBloqueante::ColaBloqueante() {
 
 ColaBloqueante::~ColaBloqueante() {}
 
-void ColaBloqueante::encolar(Recurso item) {
+void ColaBloqueante::encolar(char recurso) {
     std::unique_lock<std::mutex> bloqueo(m);
-    cola.push(item);
+    cola.push(recurso);
     cv.notify_all();
 }
 
-Recurso ColaBloqueante::desencolar() {
-	Recurso item;
-	item.identificador('\0');
+char ColaBloqueante::desencolar() {
 	std::unique_lock<std::mutex> bloqueo(m);
+	char recurso = COLA_CERRADA;
     while (cola.empty()){
-    	if(estaCerrada)return item;
+    	if(estaCerrada)return recurso;
     	cv.wait(bloqueo);
     }
-    item = cola.front();
+    recurso = cola.front();
     cola.pop();
     cv.notify_all();
-    return item;
+    return recurso;
 }
 
 bool ColaBloqueante::cerrada() {

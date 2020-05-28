@@ -18,7 +18,7 @@
 
 class Poblado {
 public:
-	Poblado(std::mutex &ms,std::mutex &mp);
+	Poblado();
 	~Poblado();
 	void ingresarRecursos(std::string ruta);
 	void ingresarTrabajadores(std::string ruta);

@@ -5,23 +5,19 @@
 #include <chrono>
 #include <thread>
 #include <string>
-#include "Recurso.h"
 #include "ColaBloqueante.h"
 #include "Inventario.h"
 
-Recolector::Recolector(ColaBloqueante* fuente, Inventario* stock) {
-	this->stock = stock;
-	this->fuente = fuente;
-}
+Recolector::Recolector(ColaBloqueante &fuente, Inventario &stock) : fuente(fuente), stock(stock){}
 
 Recolector::~Recolector() {}
 
-Recurso Recolector::recibirRecurso() {
-	return this->fuente->desencolar();
+char Recolector::recibirRecurso() {
+	return this->fuente.desencolar();
 }
 
-bool Recolector::depositarRecurso(Recurso item) {
-	return this->stock->agregar(item);
+bool Recolector::depositarRecurso(char recurso) {
+	return this->stock.agregar(recurso);
 }
 
 void Recolector::trabajar() {
@@ -37,12 +33,12 @@ std::string Recolector::trabajador() {
 }
 
 void Recolector::run(){
-	while(not(this->fuente->vacia() and this->fuente->cerrada())){
-		Recurso item = recibirRecurso();
+	while(not(this->fuente.vacia() and this->fuente.cerrada())){
+		char recurso = recibirRecurso();
 		trabajar();
-		depositarRecurso(item);
+		depositarRecurso(recurso);
 	}
-	this->stock->suspenderTrabajador(this->trabajador());
-	if (this->stock->cantidadTrabajador(this->trabajador())==0)
+	this->stock.suspenderTrabajador(this->trabajador());
+	if (this->stock.cantidadTrabajador(this->trabajador())==0)
 		this->cerrarInventario();
 }

@@ -1,7 +1,7 @@
 #include "Inventario.h"
 #include <iostream>
 
-Inventario::Inventario(std::mutex &m):m(m){
+Inventario::Inventario(){
 	this->inventario['C'] = 0;
 	this->inventario['H'] = 0;
 	this->inventario['M'] = 0;
@@ -19,36 +19,34 @@ Inventario::Inventario(std::mutex &m):m(m){
 
 Inventario::~Inventario() {}
 
-bool Inventario::cerrado(Recurso item){
-	return this->estaCerrado[item.identificador()];
+bool Inventario::cerrado(char recurso){
+	return this->estaCerrado[recurso];
 }
 
-int Inventario::cantidad(Recurso item){
-	return this->inventario[item.identificador()];
+int Inventario::cantidad(char recurso){
+	return this->inventario[recurso];
 }
 
-bool Inventario::hay(Recurso item, int cantidad) {
-	return this->cantidad(item)>=cantidad;
+bool Inventario::hay(char recurso, int cantidad) {
+	return this->cantidad(recurso)>=cantidad;
 }
 
-bool Inventario::agregar(Recurso item){
+bool Inventario::agregar(char recurso){
 	std::unique_lock<std::mutex> bloqueo(m);
-	this->inventario[item.identificador()]++;
-	cv.notify_all();
+	this->inventario[recurso]++;
 	return true;
 }
 
-bool Inventario::quitar(Recurso item){
+bool Inventario::quitar(char recurso){
 	std::unique_lock<std::mutex> bloqueo(m);
-	this ->inventario[item.identificador()]--;
-	cv.notify_all();
+	if (this->inventario[recurso]==0) return false;
+	this ->inventario[recurso]--;
 	return true;
 }
 
-void Inventario::cerrar(Recurso item) {
+void Inventario::cerrar(char recurso) {
 	std::unique_lock<std::mutex> bloqueo(m);
-	estaCerrado[item.identificador()] = true;
-	cv.notify_all();
+	estaCerrado[recurso] = true;
 }
 
 void Inventario::imprimir() {
@@ -63,13 +61,11 @@ void Inventario::imprimir() {
 void Inventario::incorporarTrabajador(std::string trabajador) {
 	std::unique_lock<std::mutex> bloqueo(m);
 	this->trabajadores[trabajador]++;
-	cv.notify_all();
 }
 
 void Inventario::suspenderTrabajador(std::string trabajador) {
 	std::unique_lock<std::mutex> bloqueo(m);
 	this->trabajadores[trabajador]--;
-	cv.notify_all();
 }
 
 int Inventario::cantidadTrabajador(std::string trabajador) {

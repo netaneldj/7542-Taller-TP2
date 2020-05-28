@@ -1,35 +1,27 @@
 #include "Carpintero.h"
-#include "Madera.h"
-#include "Hierro.h"
 #include <iostream>
 
-Carpintero::Carpintero(Inventario* stock,
-		Tablero* puntos):Productor(stock, puntos) {}
+Carpintero::Carpintero(Inventario &stock,
+		Tablero &puntos):Productor(stock, puntos) {}
 
 Carpintero::~Carpintero() {}
 
 void Carpintero::consumir() {
-	Madera n;
-	Hierro h;
-
-	if (this->stock->hay(n,3) and this->stock->hay(h,1)) {
-		this->consumirNecesario(n,3);
-		this->consumirNecesario(h,1);
+	if (this->stock.hay('M',3) and this->stock.hay('H',1)) {
+		this->consumirNecesario('M',3);
+		this->consumirNecesario('H',1);
 		trabajar();
 		sumarPuntos();
 	}
 }
 
 void Carpintero::sumarPuntos() {
-	this->puntos->sumar(2);
+	this->puntos.sumar(2);
 }
 
 bool Carpintero::controlarRecursos() {
-	Madera n;
-	Hierro h;
-
-	return(this->stock->hay(n,3) or not this->stock->cerrado(n))
-			and(this->stock->hay(h,1) or not this->stock->cerrado(h));
+	return(this->stock.hay('M',3) or not this->stock.cerrado('M'))
+			and(this->stock.hay('H',1) or not this->stock.cerrado('H'));
 }
 
 

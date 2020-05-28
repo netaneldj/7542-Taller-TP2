@@ -5,7 +5,7 @@
 
 class Cocinero: public Productor {
 public:
-	Cocinero(Inventario* inventario, Tablero* tablero);
+	Cocinero(Inventario &inventario, Tablero &tablero);
 	~Cocinero();
 	void consumir() override;
 	void sumarPuntos() override;

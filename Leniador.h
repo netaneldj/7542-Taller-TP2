@@ -2,12 +2,11 @@
 #define LENIADOR_H_
 
 #include "Recolector.h"
-#include "Madera.h"
 #include <string>
 
 class Leniador: public Recolector {
 public:
-	Leniador(ColaBloqueante* fuente, Inventario* inventario);
+	Leniador(ColaBloqueante &fuente, Inventario &inventario);
 	~Leniador();
 	virtual void cerrarInventario() override;
 	virtual std::string trabajador() override;
