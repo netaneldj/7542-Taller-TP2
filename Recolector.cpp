@@ -25,7 +25,7 @@ void Recolector::trabajar() {
 	usleep(50000);
 }
 
-void Recolector::cerrarInventario() {
+void Recolector::cerrarInventarioRecurso() {
 	//nada
 }
 
@@ -41,5 +41,5 @@ void Recolector::run(){
 	}
 	this->stock.suspenderTrabajador(this->trabajador());
 	if (this->stock.cantidadTrabajador(this->trabajador())==0)
-		this->cerrarInventario();
+		this->cerrarInventarioRecurso();
 }

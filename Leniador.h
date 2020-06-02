@@ -8,7 +8,7 @@ class Leniador: public Recolector {
 public:
 	Leniador(ColaBloqueante &fuente, Inventario &inventario);
 	~Leniador();
-	virtual void cerrarInventario() override;
+	virtual void cerrarInventarioRecurso() override;
 	virtual std::string trabajador() override;
 };
 

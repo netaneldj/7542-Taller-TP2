@@ -7,7 +7,7 @@ Leniador::Leniador(ColaBloqueante &fuente,
 
 Leniador::~Leniador() {}
 
-void Leniador::cerrarInventario() {
+void Leniador::cerrarInventarioRecurso() {
 	this->stock.cerrar('M');
 }
 

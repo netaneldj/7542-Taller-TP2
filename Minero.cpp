@@ -7,7 +7,7 @@ Minero::Minero(ColaBloqueante &fuente,
 
 Minero::~Minero(){}
 
-void Minero::cerrarInventario() {
+void Minero::cerrarInventarioRecurso() {
 	this->stock.cerrar('C');
 	this->stock.cerrar('H');
 }

@@ -9,7 +9,7 @@ class Agricultor: public Recolector {
 public:
 	Agricultor(ColaBloqueante &fuente, Inventario &inventario);
 	~Agricultor();
-	virtual void cerrarInventario() override;
+	virtual void cerrarInventarioRecurso() override;
 	virtual std::string trabajador() override;
 };
 

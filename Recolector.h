@@ -12,7 +12,7 @@ public:
 	virtual ~Recolector();
 	char recibirRecurso();
 	bool depositarRecurso(char recurso);
-	virtual void cerrarInventario();
+	virtual void cerrarInventarioRecurso();
 	virtual std::string trabajador();
 	void trabajar();
 	virtual void run() override;

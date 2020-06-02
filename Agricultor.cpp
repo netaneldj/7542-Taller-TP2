@@ -10,7 +10,7 @@ Agricultor::Agricultor(ColaBloqueante &fuente,
 
 Agricultor::~Agricultor() {}
 
-void Agricultor::cerrarInventario() {
+void Agricultor::cerrarInventarioRecurso() {
 	this->stock.cerrar('T');
 }
 
