@@ -69,7 +69,7 @@ void Poblado::ingresarTrabajadores(std::string ruta){
 	}
 }
 
-void Poblado::crearTrabajadores(std::string tipo, int cantidad){
+void Poblado::crearTrabajadores(std::string &tipo, int &cantidad){
 	if(tipo.compare("Agricultores")==0) {
 		if (cantidad==0) {
 			this->stock.cerrar('T');
